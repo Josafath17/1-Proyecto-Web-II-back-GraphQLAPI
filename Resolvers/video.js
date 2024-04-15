@@ -12,10 +12,10 @@ const video = {
   getVideos: async () => {
     try {
       const video = await Video.find();
-      return videos;
+      return video;
     } catch (error) {
       throw new Error(error.message);
     }
   },
 };
-modulo.export = video;
+module.exports = video;

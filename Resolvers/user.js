@@ -14,7 +14,7 @@ const user = {
   },
   getUsers: async () => {
     try {
-      const users = await User.find({ state: true });
+      const users = await User.find({ state: "confirm" });
       return users;
     } catch (error) {
       throw new Error("Internal server error");

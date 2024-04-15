@@ -12,7 +12,7 @@ const account = {
   },
   getAccounts: async () => {
     try {
-      const accounts = await Account.find({ state: true });
+      const accounts = await Account.find();
       return accounts;
     } catch (error) {
       throw new Error("Internal server error");
@@ -20,4 +20,4 @@ const account = {
   },
 };
 
-modulo.export = account;
+module.exports = account;

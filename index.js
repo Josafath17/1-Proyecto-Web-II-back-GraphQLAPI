@@ -1,3 +1,4 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 // Configurar el servidor Express
@@ -33,6 +34,7 @@ const schema = buildSchema(`
       username: String!
       password: String!
       phone: String!
+      pin: Int!
       firstName: String!
       lastName: String!
       country: String!
@@ -69,7 +71,7 @@ const root = {
 
 // Conexión a la base de datos MongoDB
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/users2");
+mongoose.connect("mongodb://127.0.0.1:27017/proyecto2");
 
 const theSecretKey = process.env.JWT_SECRET;
 
