@@ -7,44 +7,65 @@ const app = express();
 // Configurar de GraphQL
 const { buildSchema } = require("graphql");
 const { graphqlHTTP } = require("express-graphql");
+const account = require("./Resolvers/account");
+const user = require("./Resolvers/user");
+const playlist = require("./Resolvers/playlist");
+const video = require("./Resolvers/Video");
 
 // Unir tipos GraphQL
 const schema = buildSchema(`
     type Account {
-        id: ID!
-        firstName: String!
-        pin: Int!
-        age: Int!
-        avatar: String!
-        playlists: [String]!
-        user: ID!
+      id: ID!
+      firstName: String!
+      pin: Int!
+      age: Int!
+      avatar: String!
+      playlists: [String]!
+      user: ID!
     }
     type Playlist {
-        id: ID!
-        name: String!
-        user: ID!
+      id: ID!
+      name: String!
+      user: ID!
     }
     type User {
-        id: ID!
-        username: String!
-        password: String!
-        phone: String!
-        firstName: String!
-        lastName: String!
-        country: String!
-        birthdate: String!
+      id: ID!
+      username: String!
+      password: String!
+      phone: String!
+      firstName: String!
+      lastName: String!
+      country: String!
+      birthdate: String!
     }
     type Video {
-        id: ID!
-        name: String!
-        url: String!
-        description: String!
+      id: ID!
+      name: String!
+      url: String!
+      description: String!
     }
     type Query {
-    
+      getAccount(id: ID!): Account
+      getAccounts: [Account!]!
+
+      getUser(id: ID!): User
+      getUsers: [User!]!
+
+      getPlaylist(id: ID!): Playlist
+      getPlaylists: [Playlist!]!
+      
+      getVideo(id: ID!): Video
+      getVideos: [Video!]!
+
+    }
 `);
 
-const root = {};
+const root = {
+  ...account,
+  ...user,
+  ...playlist,
+  ...video,
+};
 
 // Conexión a la base de datos MongoDB
 const mongoose = require("mongoose");
@@ -55,6 +76,7 @@ const theSecretKey = process.env.JWT_SECRET;
 // parser for the request body (required for the POST and PUT methods)
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const videoModel = require("./models/videoModel");
 
 // Middlewares
 app.use(bodyParser.json());

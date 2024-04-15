@@ -9,7 +9,7 @@ const video = {
       throw new Error(error.message);
     }
   },
-  getAllVideos: async () => {
+  getVideos: async () => {
     try {
       const video = await Video.find();
       return videos;
