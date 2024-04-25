@@ -18,6 +18,14 @@ const playlist = {
       throw new Error("Internal server error");
     }
   },
+  getPlaylistsUser: async ({ iduser }) => {
+    try {
+      const playlist = await Playlist.find({ user: iduser });
+      return playlist;
+    } catch (error) {
+      throw new Error("Internal server error");
+    }
+  },
 };
 
 module.exports = playlist;

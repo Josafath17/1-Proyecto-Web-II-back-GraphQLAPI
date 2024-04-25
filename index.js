@@ -49,15 +49,18 @@ const schema = buildSchema(`
     type Query {
       getAccount(id: ID!): Account
       getAccounts: [Account!]!
+      getAccountsUser(iduser: ID!): [Account!]!
 
       getUser(id: ID!): User
       getUsers: [User!]!
 
       getPlaylist(id: ID!): Playlist
       getPlaylists: [Playlist!]!
+      getPlaylistsUser(iduser: ID!): [Playlist!]!
       
       getVideo(id: ID!): Video
       getVideos: [Video!]!
+      getVideosPlaylist(idplaylist: ID!): [Video!]!
 
     }
 `);

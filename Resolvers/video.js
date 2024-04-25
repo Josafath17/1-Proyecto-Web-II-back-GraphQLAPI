@@ -17,5 +17,13 @@ const video = {
       throw new Error(error.message);
     }
   },
+  getVideosPlaylist: async ({ idplaylist }) => {
+    try {
+      const video = await Video.find({ playlist: idplaylist });
+      return video;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 };
 module.exports = video;
