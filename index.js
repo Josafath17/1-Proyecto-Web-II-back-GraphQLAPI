@@ -93,6 +93,8 @@ app.use(
   })
 );
 
+
+
 // JWT Authentication middleware
 app.use(function (req, res, next) {
   if (req.headers["authorization"]) {
@@ -124,7 +126,7 @@ app.use(function (req, res, next) {
   }
 });
 
-// Crear y utilizar el middleware GraphQL
+// Crear y utilizar el middleware GraphQL.
 app.use(
   "/graphql",
   graphqlHTTP({
